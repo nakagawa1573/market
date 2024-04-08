@@ -7,29 +7,34 @@
 @section('content')
     <div class="tab__wrapper">
         <div class="tab">
-            <a class="tab__item--select" href="">おすすめ</a>
-            <a class="tab__item" href="">マイリスト</a>
+            <button class="tab__item" id="select">おすすめ</button>
+            <button class="tab__item" id="none" onclick="switchTab();">マイリスト</button>
         </div>
     </div>
     {{-- おすすめとマイリストの切り替えはコントローラーでflagを持たせてifで切り替える --}}
-    <section class="content">
-        @for ($i = 0; $i < 12; $i++)
-            <article class="content__item">
-                <a class="content__item--link" href="">
-                    <img class="content__item--link__img" src="{{ Storage::disk('public')->url('/G-GEAR-G1.jpg') }}"
-                        alt="">
-                </a>
-            </article>
-        @endfor
+    <section class="content" id="main">
+        @if (isset($items))
+            @foreach ($items as $item)
+                <article class="content__item">
+                    <a class="content__item--link" href="/item/{{ $item->id }}">
+                        <img class="content__item--link__img"
+                            src="{{ Storage::disk('public')->url('/items') . '/' . $item->img }}">
+                    </a>
+                </article>
+            @endforeach
+        @endif
     </section>
-    <section class="content">
-        @for ($i = 0; $i < 7; $i++)
-            <article class="content__item">
-                <a class="content__item--link" href="">
-                    <img class="content__item--link__img" src="{{ Storage::disk('public')->url('/items/G-GEAR-G2.jpg') }}"
-                        alt="">
-                </a>
-            </article>
-        @endfor
+    <section class="content" id="modal">
+        @if (isset($favorites))
+            @foreach ($favorites as $favorite)
+                <article class="content__item">
+                    <a class="content__item--link" href="/item/{{$favorite->item->id}}">
+                        <img class="content__item--link__img"
+                            src="{{ Storage::disk('public')->url('/items') . '/' . $favorite->item->img }}">
+                    </a>
+                </article>
+            @endforeach
+        @endif
     </section>
+    <script src="{{ asset('js/main.js') }}"></script>
 @endsection

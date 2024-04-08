@@ -39,4 +39,29 @@ class User extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    public function profile()
+    {
+        return $this->hasMany(Profile::class);
+    }
+
+    public function item()
+    {
+        return $this->hasMany(Item::class);
+    }
+
+    public function favorite()
+    {
+        return $this->belongsToMany(Item::class, 'favorites');
+    }
+
+    public function comment()
+    {
+        return $this->belongsToMany(Item::class, 'comments');
+    }
+
+    public function purchase_history()
+    {
+        return $this->belongsToMany(Item::class, 'purchase_histories');
+    }
 }

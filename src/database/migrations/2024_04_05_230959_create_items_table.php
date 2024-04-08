@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('brand');
             $table->unsignedBigInteger('price');
             $table->string('description');
+            $table->string('img');
             $table->timestamps();
         });
     }

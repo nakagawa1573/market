@@ -15,7 +15,7 @@
 #img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .content__item--box {
@@ -23,7 +23,7 @@
 }
 
 .content__item {
-    width: 450px;
+    width: 500px;
 }
 
 #name,
@@ -45,7 +45,13 @@
 
 .content__item--link {
     margin-right: 40px;
-    margin-left: 10px;
+}
+
+#switch,
+#favorite {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 #icon__img {
@@ -66,6 +72,7 @@
     border-radius: 6px;
     font-size: 22px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .description {
@@ -77,8 +84,13 @@
     display: flex;
 }
 
+.content__item--group {
+    align-items: center;
+}
+
 .content__item--group__ttl {
     width: 150px;
+    flex-shrink: 0;
 }
 
 #category__wrapper {
@@ -104,16 +116,23 @@
     text-align: center;
 }
 
-#comment__wrapper {
+#modal {
     display: none;
-}
-
-#comment__wrapper:target {
-    display: block;
+    background-color: #fff;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 
 #comment {
     resize: none;
     width: 100%;
     margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+#error{
+    color: red;
 }

@@ -45,16 +45,20 @@ nav {
 .header__item--link {
     color: #fff;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .header__item--link__btn {
     width: 80px;
     height: 40px;
-    font-size: 20px;
+    font-size: 18px;
     border: none;
     border-radius: 3px;
     background-color: #fff;
+    cursor: pointer;
 }
 
 @media screen and (max-width:980px) {

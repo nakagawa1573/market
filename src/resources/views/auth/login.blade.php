@@ -10,26 +10,26 @@
             ログイン
         </h1>
         <div class="content__item">
-            <form action="">
+            <form action="/login" method="post">
                 @csrf
                 <div class="content__item--box">
                     <h3 class="content__item--ttl">
                         メールアドレス
                     </h3>
-                    <input class="content__item--input" type="text">
+                    <input class="content__item--input" type="text" name="email">
                 </div>
                 <div class="content__item--box">
                     <h3 class="content__item--ttl">
                         パスワード
                     </h3>
-                    <input class="content__item--input" type="password">
+                    <input class="content__item--input" type="password" name="password">
                 </div>
                 <button class="content__item--btn">
-                    登録する
+                    ログインする
                 </button>
             </form>
         </div>
-        <a class="content__link" href="">
+        <a class="content__link" href="/register">
             会員登録はこちら
         </a>
     </section>

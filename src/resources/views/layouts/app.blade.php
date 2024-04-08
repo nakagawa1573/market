@@ -15,7 +15,8 @@
     <header>
         <div class="header__ttl">
             <a href="/">
-                <img class="header__ttl--img" src="{{ Storage::disk('public')->url('/icons/logo.svg') }}" alt="">
+                <img class="header__ttl--img" src="{{ Storage::disk('public')->url('/icons/logo.svg') }}"
+                    alt="">
             </a>
         </div>
         <div class="header__item--wrapper" id="search">
@@ -25,28 +26,32 @@
         </div>
         <nav class="header__item--wrapper">
             <ul class="header__item--link__box">
-                <li>
-                    @if (Auth::check())
-                        <a class="header__item--link" href="">
-                            ログアウト
-                        </a>
-                    @else
-                        <a class="header__item--link" href="">
-                            ログイン
-                        </a>
-                    @endif
-                </li>
-                <li>
-                    @if (Auth::check())
-                        <a class="header__item--link" href="">
+                @if (Auth::check())
+                    <li>
+                        <form action="/logout" method="post">
+                            @csrf
+                            <button class="header__item--link" type="submit">
+                                ログアウト
+                            </button>
+                        </form>
+                    </li>
+                    <li>
+                        <a class="header__item--link" href="/mypage">
                             マイページ
                         </a>
-                    @else
-                        <a class="header__item--link" href="">
+                    </li>
+                @else
+                    <li>
+                        <a class="header__item--link" href="/login">
+                            ログイン
+                        </a>
+                    </li>
+                    <li>
+                        <a class="header__item--link" href="/register">
                             会員登録
                         </a>
-                    @endif
-                </li>
+                    </li>
+                @endif
                 <li>
                     <button class="header__item--link__btn">
                         出品
