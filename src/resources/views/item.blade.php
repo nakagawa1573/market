@@ -7,7 +7,11 @@
 @section('content')
     <section class="content">
         <div class="content__img">
-            <img id="img" src="{{ Storage::disk('public')->url('/items') . '/' . $item->img }}" alt="">
+            @if (app()->isLocal())
+                <img id="img" src="{{ Storage::disk('public')->url('/items/' . $item->img) }}" alt="">
+            @elseif(app()->isProduction())
+                <img id="img" src="{{ Storage::disk('s3')->url('/items/' . $item->img) }}" alt="">
+            @endif
         </div>
         <article class="content__item">
             <div class="content__item--box">
@@ -68,12 +72,18 @@
                 </form>
             </div>
             <div id="main">
-                <form action="">
-                    @csrf
-                    <button class="content__item--btn">
-                        購入する
-                    </button>
-                </form>
+                @if (!$purchaseFlag)
+                    <form action="/purchase/{{ $item->id }}" method="get">
+                        @csrf
+                        <button class="content__item--btn">
+                            購入する
+                        </button>
+                    </form>
+                @else
+                    <div class="content__item--sold">
+                        売り切れました
+                    </div>
+                @endif
                 <div class="content__item--box">
                     <h2 class="content__item--ttl">
                         商品説明

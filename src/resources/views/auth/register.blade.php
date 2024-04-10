@@ -16,12 +16,18 @@
                     <h3 class="content__item--ttl">
                         メールアドレス
                     </h3>
+                    @error('email')
+                        {{ $message }}
+                    @enderror
                     <input class="content__item--input" type="text" name="email">
                 </div>
                 <div class="content__item--box">
                     <h3 class="content__item--ttl">
                         パスワード
                     </h3>
+                    @error('password')
+                        {{ $message }}
+                    @enderror
                     <input class="content__item--input" type="password" name="password">
                 </div>
                 <button class="content__item--btn" type="submit">

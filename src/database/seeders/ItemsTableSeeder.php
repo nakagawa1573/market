@@ -22,8 +22,8 @@ class ItemsTableSeeder extends Seeder
             'price' => '6000',
             'description' => 'カラー:コヨーテ<br><br>使用感有<br>購入後、即発送します',
             'img' => '1000005506.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
 
@@ -35,8 +35,8 @@ class ItemsTableSeeder extends Seeder
             'price' => '15000',
             'description' => 'カラー:コヨーテ<br><br>新品<br>購入後、即発送します',
             'img' => '1000005828.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
 
@@ -48,8 +48,8 @@ class ItemsTableSeeder extends Seeder
             'price' => '25000',
             'description' => 'カラー:コヨーテ<br><br>サイズ:26cm<br><br>新品<br>購入後、即発送します',
             'img' => '1000008739.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
 
@@ -61,8 +61,8 @@ class ItemsTableSeeder extends Seeder
             'price' => '3000',
             'description' => '購入後、即発送します',
             'img' => 'afdsfd.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
 
@@ -70,12 +70,12 @@ class ItemsTableSeeder extends Seeder
             'user_id' => User::inRandomOrder()->first()->id,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => '大型バッグ（仏軍配給品）',
-            'brand' => '不明',
+            'brand' => '',
             'price' => '15000',
             'description' => '容量:100L<br><br>購入後、即発送します',
             'img' => 'bag1.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
 
@@ -83,12 +83,12 @@ class ItemsTableSeeder extends Seeder
             'user_id' => User::inRandomOrder()->first()->id,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => 'リュックサック（仏軍配給品）',
-            'brand' => '不明',
+            'brand' => '',
             'price' => '10000',
             'description' => '容量:30L<br><br>購入後、即発送します',
             'img' => 'bag2.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
 
@@ -100,8 +100,8 @@ class ItemsTableSeeder extends Seeder
             'price' => '50000',
             'description' => 'カラー:OD<br><br>容量:40L<br><br>新品<br>購入後、即発送します',
             'img' => 'bag3.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
 
@@ -113,8 +113,8 @@ class ItemsTableSeeder extends Seeder
             'price' => '200000',
             'description' => '購入後、即発送します',
             'img' => 'pc.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
 
@@ -122,12 +122,12 @@ class ItemsTableSeeder extends Seeder
             'user_id' => User::inRandomOrder()->first()->id,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => '仏軍迷彩服(夏用)',
-            'brand' => '不明',
+            'brand' => '',
             'price' => '10000',
             'description' => 'サイズ:不明<br><br>購入後、即発送します',
             'img' => 'PXL_20230920_070659751.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
 
@@ -135,12 +135,12 @@ class ItemsTableSeeder extends Seeder
             'user_id' => User::inRandomOrder()->first()->id,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => 'スクラッチ寄せ集め',
-            'brand' => '不明',
+            'brand' => '',
             'price' => '30000',
             'description' => '購入後、即発送します',
             'img' => 'PXL_20240406_014601938.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
 
@@ -152,8 +152,8 @@ class ItemsTableSeeder extends Seeder
             'price' => '500',
             'description' => '購入後、即発送します',
             'img' => 'PXL_20240406_014617204.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
 
@@ -161,12 +161,12 @@ class ItemsTableSeeder extends Seeder
             'user_id' => User::inRandomOrder()->first()->id,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => 'ハーフラック、バーベル、ベンチ',
-            'brand' => '不明',
+            'brand' => '',
             'price' => '50000',
             'description' => '購入後、即発送します',
             'img' => 'PXL_20240406_014632400.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
 
@@ -178,8 +178,8 @@ class ItemsTableSeeder extends Seeder
             'price' => '3000',
             'description' => '購入後、即発送します',
             'img' => 'PXL_20240406_014652486.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
 
@@ -187,12 +187,12 @@ class ItemsTableSeeder extends Seeder
             'user_id' => User::inRandomOrder()->first()->id,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => 'ケトルベル',
-            'brand' => '不明',
+            'brand' => '',
             'price' => '3000',
             'description' => '重量:16kg<br><br>購入後、即発送します',
             'img' => 'PXL_20240406_014722038.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
 
@@ -204,8 +204,8 @@ class ItemsTableSeeder extends Seeder
             'price' => '20000',
             'description' => '容量:25L<br><br>購入後、即発送します',
             'img' => 'PXL_20240406_014732240.jpg',
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at = fake()->dateTimeBetween('-2 week', now()),
+            'updated_at' => $created_at,
         ];
         DB::table('items')->insert($param);
     }

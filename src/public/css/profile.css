@@ -36,6 +36,16 @@
     color: #FF5555;
     font-size: 20px;
     font-weight: bold;
+    cursor: pointer;
+}
+
+.content__form--img__btn>label{
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #img {
@@ -79,4 +89,5 @@
     border-radius: 6px;
     font-size: 22px;
     font-weight: bold;
+    cursor: pointer;
 }

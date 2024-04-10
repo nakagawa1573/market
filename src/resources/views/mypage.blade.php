@@ -8,15 +8,21 @@
     <section class="profile">
         <article class="profile__item">
             <div class="profile__item--img">
-                <img src="{{ Storage::disk('public')->url('/items') . '/' . 'PXL_20240406_014732240.jpg' }}">
+                @if (app()->isLocal())
+                    <img class="content__item--link__img" src="{{$profile ? Storage::disk('public')->url('/profiles/' . $profile->img) : '' }}">
+                @elseif(app()->isProduction())
+                    <img class="content__item--link__img" src="{{$profile ? Storage::disk('s3')->url('/profiles/' . $profile->img) : '' }}">
+                @endif
             </div>
             <h2 class="profile__item--name">
-                ユーザー名
+                {{$profile ? $profile->name : 'ユーザー名'}}
             </h2>
         </article>
         {{-- ユーザーの名前を表示。登録してなければ「ユーザー名」を表示 --}}
         <button class="profile__btn">
-            プロフィールを編集
+            <a href="/mypage/profile">
+                プロフィールを編集
+            </a>
         </button>
     </section>
     <div class="tab__wrapper">
@@ -30,8 +36,13 @@
             @foreach ($sells as $sell)
                 <article class="content__item">
                     <a class="content__item--link" href="/item/{{ $sell->id }}">
-                        <img class="content__item--link__img"
-                            src="{{ Storage::disk('public')->url('/items') . '/' . $sell->img }}">
+                        @if (app()->isLocal())
+                            <img class="content__item--link__img"
+                                src="{{ Storage::disk('public')->url('/items/' . $sell->img) }}">
+                        @elseif(app()->isProduction())
+                            <img class="content__item--link__img"
+                                src="{{ Storage::disk('s3')->url('/items/' . $sell->img) }}">
+                        @endif
                     </a>
                 </article>
             @endforeach
@@ -42,9 +53,14 @@
         @if (isset($purchases))
             @foreach ($purchases as $purchase)
                 <article class="content__item">
-                    <a class="content__item--link" href="/item/{{$purchase->item->id}}">
-                        <img class="content__item--link__img"
-                            src="{{ Storage::disk('public')->url('/items') . '/' . $purchase->item->img }}">
+                    <a class="content__item--link" href="/item/{{ $purchase->item->id }}">
+                        @if (app()->isLocal())
+                            <img class="content__item--link__img"
+                                src="{{ Storage::disk('public')->url('/items/' . $purchase->item->img) }}">
+                        @elseif(app()->isProduction())
+                            <img class="content__item--link__img"
+                                src="{{ Storage::disk('s3')->url('/items/' . $purchase->item->img) }}">
+                        @endif
                     </a>
                 </article>
             @endforeach

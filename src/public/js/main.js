@@ -34,3 +34,12 @@ function switchTab() {
     none.removeAttribute("onclick");
     none.setAttribute("onclick", "");
 }
+
+document.getElementById("btn__category").addEventListener("click", function () {
+    var modal = document.getElementById("modal");
+    if (modal.style.display == "block") {
+        modal.style.display = "none";
+    } else {
+        modal.style.display = "block";
+    }
+});

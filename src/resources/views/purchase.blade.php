@@ -9,14 +9,18 @@
         <article class="content__item">
             <div class="content__img--box">
                 <div id="img">
-                    <img src="{{ Storage::disk('public')->url('/G-GEAR-G1.jpg') }}" alt="">
+                    @if (app()->isLocal())
+                        <img src="{{ Storage::disk('public')->url('/items/'.$item->img) }}">
+                    @elseif(app()->isProduction())
+                        <img src="{{ Storage::disk('s3')->url('/items/'.$item->img) }}">
+                    @endif
                 </div>
                 <div class="item__wrapper">
                     <h1 id="name">
-                        商品名
+                        {{$item->name}}
                     </h1>
                     <p id="price">
-                        ￥47,000
+                        ￥{{number_format($item->price)}}
                     </p>
                 </div>
             </div>
@@ -44,7 +48,7 @@
                         商品代金
                     </p>
                     <p id="data">
-                        ￥47,000
+                        ￥{{number_format($item->price)}}
                     </p>
                 </div>
                 <div class="content__item--group">
@@ -52,7 +56,7 @@
                         支払い金額
                     </p>
                     <p id="data">
-                        ￥47,000
+                        ￥{{number_format($item->price)}}
                     </p>
                 </div>
                 <div class="content__item--group">
@@ -64,7 +68,7 @@
                     </p>
                 </div>
             </div>
-            <form action="">
+            <form action="/purchase/{{$item->id}}" method="post">
                 @csrf
                 <button class="content__item--btn" type="submit">
                     購入する

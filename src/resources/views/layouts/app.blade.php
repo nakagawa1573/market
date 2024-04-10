@@ -20,8 +20,12 @@
             </a>
         </div>
         <div class="header__item--wrapper" id="search">
-            <form action="">
-                <input class="header__item--search" type="text" placeholder="なにをお探しですか？">
+            <form action="/search" method="get">
+                @csrf
+                <input class="header__item--search" type="text" placeholder="なにをお探しですか？" name="keyword" value="{{$keyword ?? null}}">
+                <button type="submit" id="search__btn">
+                    <img src="{{ Storage::disk('public')->url('/icons/search.svg') }}">
+                </button>
             </form>
         </div>
         <nav class="header__item--wrapper">
@@ -53,7 +57,7 @@
                     </li>
                 @endif
                 <li>
-                    <button class="header__item--link__btn">
+                    <button class="header__item--link__btn" onclick="location.href='/sell'">
                         出品
                     </button>
                 </li>

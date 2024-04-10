@@ -15,6 +15,7 @@ class Profile extends Model
         'post_code',
         'address',
         'building',
+        'img',
     ];
 
     public function user()
