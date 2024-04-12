@@ -27,26 +27,30 @@ class UserController extends Controller
         return view('profile', compact('profile'));
     }
 
-    public function storeProfile(ProfileRequest $request)
+    public function store(ProfileRequest $request)
     {
         $profile = $request->only(['name', 'post_code', 'address', 'building']);
         $profile['user_id'] = Auth::user()->id;
         $img = $request->file('img');
         try {
-            if (app()->isLocal()) {
-                $path = Storage::disk('public')->put('/profiles', $img);
-            } elseif (app()->isProduction()) {
-                $path = Storage::disk('s3')->put('/profiles', $img);
+            if ($img) {
+                if (app()->isLocal() || app()->runningUnitTests()) {
+                    $path = Storage::disk('public')->put('/profiles', $img);
+                } elseif (app()->isProduction()) {
+                    $path = Storage::disk('s3')->put('/profiles', $img);
+                }
+                $profile['img'] = basename($path);
+            }else{
+                $profile['img'] = null;
             }
-            $profile['img'] = basename($path);
             Profile::create($profile);
         } catch (\Exception | QueryException $e) {
             if (isset($path)) {
                 Storage::delete($path);
             }
-            return back()->with('登録に失敗しました');
+            return back()->with('message', '登録に失敗しました');
         }
-        return back();
+        return redirect('/mypage');
     }
 
     public function update(ProfileRequest $request)
@@ -55,17 +59,17 @@ class UserController extends Controller
         $profileData = $request->only(['name', 'post_code', 'address', 'building']);
         $img = $request->file('img');
         if ($img) {
-            if (app()->isLocal()) {
-                Storage::disk('public')->delete('/profiles', $profile->img);
+            if (app()->isLocal() || app()->runningUnitTests()) {
+                Storage::disk('public')->delete('/profiles/'. $profile->img);
                 $path = Storage::disk('public')->put('/profiles', $img);
             } elseif (app()->isProduction()) {
-                Storage::disk('s3')->delete('/profiles', $profile->img);
+                Storage::disk('s3')->delete('/profiles/' . $profile->img);
                 $path = Storage::disk('s3')->put('/profiles', $img);
             }
             $profileData['img'] = basename($path);
         }
         $profile->update($profileData);
 
-        return back();
+        return redirect('/mypage');
     }
 }

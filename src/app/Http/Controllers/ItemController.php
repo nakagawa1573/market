@@ -20,8 +20,7 @@ class ItemController extends Controller
         $items = Item::where([
             ['created_at', '>=', $weekAgo],
             ['created_at', '<=', $now],
-        ])
-            ->get();
+        ])->get();
         foreach ($items as $item) {
             if (PurchaseHistory::where('item_id', $item->id)->exists()) {
                 $key = $items->search($item);
@@ -78,9 +77,14 @@ class ItemController extends Controller
 
     public function storeFavorite(Item $item_id)
     {
-        $favorite['user_id'] = Auth::user()->id;
-        $favorite['item_id'] = $item_id->id;
-        Favorite::create($favorite);
+        $user_id = Auth::user()->id;
+        $favoriteData = Favorite::where('user_id', $user_id)->where('item_id', $item_id->id)->first();
+        if ($favoriteData === null) {
+            $favorite['user_id'] = $user_id;
+            $favorite['item_id'] = $item_id->id;
+            Favorite::create($favorite);
+            return back();
+        }
         return back();
     }
 

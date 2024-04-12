@@ -24,7 +24,11 @@ class TransactionController extends Controller
     public function buy(Item $item_id)
     {
         $purchase = ['user_id' => Auth::user()->id, 'item_id' => $item_id->id];
-        PurchaseHistory::create($purchase);
+        $count = PurchaseHistory::where($purchase)->count();
+        if ($count === 0) {
+            PurchaseHistory::create($purchase);
+            return redirect('/');
+        }
         return redirect('/');
     }
 
@@ -42,7 +46,7 @@ class TransactionController extends Controller
         $item['user_id'] = Auth::user()->id;
         $img = $request->file('img');
         try {
-            if (app()->isLocal()) {
+            if (app()->isLocal() || app()->runningUnitTests()) {
                 $path = Storage::disk('public')->put('/items', $img);
             } elseif (app()->isProduction()) {
                 $path = Storage::disk('s3')->put('/items', $img);

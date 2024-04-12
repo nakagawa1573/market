@@ -89,7 +89,7 @@
                         商品説明
                     </h2>
                     <p class="description">
-                        {!! $item->description !!}
+                        {!! nl2br(htmlspecialchars($item->description)) !!}
                     </p>
                 </div>
                 <div class="content__item--box">

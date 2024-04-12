@@ -28,7 +28,7 @@ class SellRequest extends FormRequest
             'status_id' => ['required', 'numeric', 'between:1,4'],
             'name' => ['required', 'string', 'max:191'],
             'brand' => ['nullable', 'string', 'max:191'],
-            'price' => ['required', 'numeric', 'max:10'],
+            'price' => ['required', 'numeric'],
             'description' => ['required', 'string', 'max:200'],
         ];
     }

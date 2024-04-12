@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ItemController::class, 'index']);
-Route::get('/search', [ItemController::class, 'search']);
+Route::get('/search', [ItemController::class, 'search'])->name('search');
 Route::get('/item/{item_id}', [ItemController::class, 'detail']);
 
 Route::post('/login', [LoginController::class, 'store']);

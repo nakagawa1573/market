@@ -9,13 +9,15 @@
         <article class="profile__item">
             <div class="profile__item--img">
                 @if (app()->isLocal())
-                    <img class="content__item--link__img" src="{{$profile ? Storage::disk('public')->url('/profiles/' . $profile->img) : '' }}">
+                    <img class="content__item--link__img"
+                        src="{{ $profile && $profile->img ? Storage::disk('public')->url('/profiles/' . $profile->img) : '' }}">
                 @elseif(app()->isProduction())
-                    <img class="content__item--link__img" src="{{$profile ? Storage::disk('s3')->url('/profiles/' . $profile->img) : '' }}">
+                    <img class="content__item--link__img"
+                        src="{{ $profile ? Storage::disk('s3')->url('/profiles/' . $profile->img) : '' }}">
                 @endif
             </div>
             <h2 class="profile__item--name">
-                {{$profile ? $profile->name : 'ユーザー名'}}
+                {{ $profile ? $profile->name : 'ユーザー名' }}
             </h2>
         </article>
         {{-- ユーザーの名前を表示。登録してなければ「ユーザー名」を表示 --}}
@@ -44,6 +46,12 @@
                                 src="{{ Storage::disk('s3')->url('/items/' . $sell->img) }}">
                         @endif
                     </a>
+                    <p class="content__item--name">
+                        {{ Illuminate\Support\Str::limit($sell->name, 40, '...') }}
+                    </p>
+                    <div class="content__item--price">
+                        ￥{{ number_format($sell->price) }}
+                    </div>
                 </article>
             @endforeach
         @endif
@@ -62,6 +70,12 @@
                                 src="{{ Storage::disk('s3')->url('/items/' . $purchase->item->img) }}">
                         @endif
                     </a>
+                    <p class="content__item--name">
+                        {{ Illuminate\Support\Str::limit($purchase->item->name, 40, '...') }}
+                    </p>
+                    <div class="content__item--price">
+                        ￥{{ number_format($purchase->item->price) }}
+                    </div>
                 </article>
             @endforeach
         @endif
