@@ -1,0 +1,147 @@
+.content {
+    width: 800px;
+    margin: 50px auto;
+}
+
+#btn {
+    font-size: 16px;
+    color: #0073CC;
+    border: none;
+    background-color: transparent;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+#open {
+    color: #0073CC;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    border: 1px solid #E1E9F2;
+}
+
+th:first-child {
+    border-radius: 10px 0 0 0;
+}
+
+th:last-child {
+    border-radius: 0 10px 0 0;
+}
+
+.data__row:last-child>td:first-child {
+    border-radius: 0 0 0 10px;
+}
+
+.data__row:last-child>td:last-child {
+    border-radius: 0 0 10px 0;
+}
+
+th {
+    background-color: #EEF1F8;
+    border-bottom: 2px solid #E1E9F2;
+}
+
+tr:nth-child(even)>td {
+    background-color: #F6F7F8;
+}
+
+tr {
+    font-size: 14px;
+}
+
+#header__checkbox,
+#check,
+#id,
+#email {
+    padding-left: 5px;
+}
+
+#check,
+#role,
+#date {
+    text-align: center;
+}
+
+
+
+#modal {
+    width: 600px;
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 8px #bbb;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    display: none;
+}
+
+.email__box {
+    width: 100%;
+    text-align: center;
+}
+
+.email__wrapper>input,
+.email__box>textarea {
+    width: 95%;
+    font-size: 16px;
+    border: none;
+}
+
+.email__wrapper>input:focus,
+.email__box>textarea:focus {
+    outline: none;
+}
+
+.email__wrapper>input {
+    height: 40px;
+    padding: 15px 10px 10px 40px;
+    border-bottom: 1px solid #000;
+}
+
+.email__wrapper {
+    position: relative;
+}
+
+.email__wrapper::before {
+    content: '件名';
+    position: absolute;
+    top: 25%;
+    left: 20px;
+}
+
+.email__box>textarea {
+    resize: none;
+    height: 500px;
+    padding: 10px 10px;
+}
+
+.email__btn--submit {
+    width: 100px;
+    height: 30px;
+    background-color: #0073CC;
+    color: #fff;
+    text-align: center;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+}
+
+.email__btn--delete{
+    border: none;
+    background-color: transparent;
+    width: 30px;
+    cursor: pointer;
+}
+
+.email__btn--wrapper{
+    padding: 20px 20px;
+    display: flex;
+    justify-content: space-between;
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -56,6 +57,7 @@ class LoginController extends Controller
      */
     public function store(LoginRequest $request)
     {
+        User::where('email', $request->email)->update(['login_at' => now()]);
         return $this->loginPipeline($request)->then(function ($request) {
             return redirect()->intended('/');
         });

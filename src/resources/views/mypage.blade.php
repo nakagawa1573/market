@@ -17,15 +17,23 @@
                 @endif
             </div>
             <h2 class="profile__item--name">
-                {{ $profile ? $profile->name : 'ユーザー名' }}
+                {{ $profile ? $profile->name : 'user#' . $user->id }}
             </h2>
         </article>
-        {{-- ユーザーの名前を表示。登録してなければ「ユーザー名」を表示 --}}
-        <button class="profile__btn">
-            <a href="/mypage/profile">
-                プロフィールを編集
-            </a>
-        </button>
+        <div>
+            @can('admin', $user)
+                <button class="admin__btn">
+                    <a href="/admin">
+                        管理
+                    </a>
+                </button>
+            @endcan
+            <button class="profile__btn">
+                <a href="/mypage/profile">
+                    プロフィールを編集
+                </a>
+            </button>
+        </div>
     </section>
     <div class="tab__wrapper">
         <div class="tab">

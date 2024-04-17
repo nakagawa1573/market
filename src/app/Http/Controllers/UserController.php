@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeliveryAddressRequest;
 use App\Http\Requests\ProfileRequest;
+use App\Models\DeliveryAddress;
 use App\Models\Item;
 use App\Models\Profile;
 use App\Models\PurchaseHistory;
@@ -14,21 +16,22 @@ class UserController extends Controller
 {
     public function index()
     {
-        $userId = Auth::user()->id;
-        $sells = Item::where('user_id', $userId)->get();
-        $purchases = PurchaseHistory::with('item')->where('user_id', $userId)->get();
-        $profile = Profile::where('user_id', $userId)->first();
-        return view('mypage', compact('sells', 'purchases', 'profile'));
+        $user = Auth::user();
+        $sells = Item::where('user_id', $user->id)->get();
+        $purchases = PurchaseHistory::with('item')->where('user_id', $user->id)->get();
+        $profile = Profile::where('user_id', $user->id)->first();
+        return view('mypage', compact('sells', 'purchases', 'profile', 'user'));
     }
 
-    public function create()
+    public function createProfile()
     {
         $profile = Profile::where('user_id', Auth::user()->id)->first();
         return view('profile', compact('profile'));
     }
 
-    public function store(ProfileRequest $request)
+    public function storeProfile(ProfileRequest $request)
     {
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
         $profile = $request->only(['name', 'post_code', 'address', 'building']);
         $profile['user_id'] = Auth::user()->id;
         $img = $request->file('img');
@@ -40,7 +43,7 @@ class UserController extends Controller
                     $path = Storage::disk('s3')->put('/profiles', $img);
                 }
                 $profile['img'] = basename($path);
-            }else{
+            } else {
                 $profile['img'] = null;
             }
             Profile::create($profile);
@@ -60,7 +63,7 @@ class UserController extends Controller
         $img = $request->file('img');
         if ($img) {
             if (app()->isLocal() || app()->runningUnitTests()) {
-                Storage::disk('public')->delete('/profiles/'. $profile->img);
+                Storage::disk('public')->delete('/profiles/' . $profile->img);
                 $path = Storage::disk('public')->put('/profiles', $img);
             } elseif (app()->isProduction()) {
                 Storage::disk('s3')->delete('/profiles/' . $profile->img);
@@ -71,5 +74,33 @@ class UserController extends Controller
         $profile->update($profileData);
 
         return redirect('/mypage');
+    }
+
+    public function createDelivery()
+    {
+        $delivery = DeliveryAddress::where('user_id', Auth::user()->id)->first();
+        return view('delivery', compact('delivery'));
+    }
+
+    public function storeDelivery(DeliveryAddressRequest $request)
+    {
+        $delivery = $request->only(['post_code', 'address', 'building']);
+        $userId = Auth::user()->id;
+        $deliveryAddress = DeliveryAddress::where('user_id', $userId);
+        if ($deliveryAddress->exists()) {
+            $deliveryAddress->update($delivery);
+        }else{
+            $delivery['user_id'] = $userId;
+            DeliveryAddress::create($delivery);
+        }
+        $itemId = session('item')->id;
+        return redirect('/purchase/'. $itemId)->with(compact('delivery'));
+    }
+
+    public function destroy()
+    {
+        DeliveryAddress::where('user_id', Auth::user()->id)->delete();
+        $itemId = session('item')->id;
+        return back();
     }
 }

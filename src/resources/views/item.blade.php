@@ -46,7 +46,7 @@
                             <img id="icon__img" src="{{ Storage::disk('public')->url('/icons/bubble.svg') }}">
                         </button>
                         <p id="count">
-                            {{ $commentCount }}
+                            {{ $comments->count() }}
                         </p>
                     </div>
                 </div>
@@ -55,11 +55,11 @@
                         {{ $message }}
                     </p>
                 @enderror
-                <p>
+                <p id="error">
                     {{ session('message') }}
                 </p>
             </div>
-            <div class="content__item--box" id="modal">
+            <article class="content__item--box" id="modal">
                 <form action="/item/comment/{{ $item->id }}" method="post">
                     @csrf
                     <h3 class="content__item--ttl">
@@ -70,7 +70,69 @@
                         コメントを送信する
                     </button>
                 </form>
-            </div>
+                @foreach ($comments as $comment)
+                    <article class="comment__box">
+                        <div>
+                            @if ($comment->user->profile === null)
+                                <div class="comment__img">
+                                    <img src="{{ Storage::disk('public')->url('/icons/person.svg') }}">
+                                </div>
+                                @if ($comment->user_id === $item->user_id)
+                                    <p class="comment__seller">
+                                        出品者
+                                    </p>
+                                @endif
+                                <p class="comment__name">
+                                    user#{{ $comment->user_id }}
+                                </p>
+                            @else
+                                <div class="comment__img">
+                                    @if (app()->isLocal())
+                                        <img id="img"
+                                            src="{{ Storage::disk('public')->url('/profiles/' . $profile->img) }}">
+                                    @elseif(app()->isProduction())
+                                        <img id="img"
+                                            src="{{ Storage::disk('s3')->url('/profiles/' . $profile->img) }}">
+                                    @endif
+                                </div>
+                                <p>
+                                    {{ $comment->user->profile->name }}
+                                </p>
+                            @endif
+                        </div>
+                        <p>
+                            {{ $comment->comment }}
+                        </p>
+                        <div class="comment__option">
+                            <p>
+                                {{ $comment->created_at->format('Y-m-d H:i') }}
+                            </p>
+                            @php
+                                $user = Auth::user();
+                            @endphp
+                            @can('admin', $user)
+                                <form action="/item/comment/{{ $comment->id }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="comment__delete">
+                                        <img src="{{ Storage::disk('public')->url('/icons/delete.svg') }}">
+                                    </button>
+                                </form>
+                            @else
+                                @if ($comment->user_id === $user->id)
+                                    <form action="/item/comment/{{ $comment->id }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="comment__delete">
+                                            <img src="{{ Storage::disk('public')->url('/icons/delete.svg') }}">
+                                        </button>
+                                    </form>
+                                @endif
+                            @endcan
+                        </div>
+                    </article>
+                @endforeach
+            </article>
             <div id="main">
                 @if (!$purchaseFlag)
                     <form action="/purchase/{{ $item->id }}" method="get">

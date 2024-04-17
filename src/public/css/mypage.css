@@ -33,8 +33,8 @@
     margin: 0;
 }
 
+.admin__btn,
 .profile__btn {
-    width: 250px;
     height: 50px;
     background-color: #fff;
     border-radius: 6px;
@@ -44,6 +44,16 @@
     cursor: pointer;
 }
 
+.admin__btn {
+    width: 100px;
+    margin-right: 20px;
+}
+
+.profile__btn {
+    width: 250px;
+}
+
+.admin__btn>a,
 .profile__btn>a {
     text-decoration: none;
     color: #FF5555;

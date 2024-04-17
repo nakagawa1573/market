@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,8 +19,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'role',
         'email',
         'password',
+        'stripe_account_id',
+        'stripe_customer_id',
+        'login_at',
     ];
 
     /**
@@ -63,5 +68,10 @@ class User extends Authenticatable
     public function purchase_history()
     {
         return $this->belongsToMany(Item::class, 'purchase_histories');
+    }
+
+    public function delivery_address()
+    {
+        return $this->hasOne(DeliveryAddress::class);
     }
 }

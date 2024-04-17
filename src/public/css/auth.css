@@ -39,3 +39,8 @@
     color: #0073CC;
     font-size: 20px;
 }
+
+.error{
+    color: red;
+    margin: 0;
+}

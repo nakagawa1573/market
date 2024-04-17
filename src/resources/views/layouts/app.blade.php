@@ -22,7 +22,8 @@
         <div class="header__item--wrapper" id="search">
             <form action="/search" method="get">
                 @csrf
-                <input class="header__item--search" type="text" placeholder="なにをお探しですか？" name="keyword" value="{{$keyword ?? null}}">
+                <input class="header__item--search" type="text" placeholder="なにをお探しですか？" name="keyword"
+                    value="{{ $keyword ?? null }}">
                 <button type="submit" id="search__btn">
                     <img src="{{ Storage::disk('public')->url('/icons/search.svg') }}">
                 </button>
@@ -57,9 +58,18 @@
                     </li>
                 @endif
                 <li>
-                    <button class="header__item--link__btn" onclick="location.href='/sell'">
-                        出品
-                    </button>
+                    @can('stripeAccountIdNull', Auth::user())
+                        <form action="/stripe" method="post">
+                            @csrf
+                            <button class="header__item--link__btn" type="submit">
+                                出品
+                            </button>
+                        </form>
+                    @else
+                        <button class="header__item--link__btn" onclick="location.href='/sell'">
+                            出品
+                        </button>
+                    @endcan
                 </li>
             </ul>
         </nav>

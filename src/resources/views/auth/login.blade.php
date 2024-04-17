@@ -17,7 +17,9 @@
                         メールアドレス
                     </h3>
                     @error('email')
-                        {{ $message }}
+                        <p class="error">
+                            {{ $message }}
+                        </p>
                     @enderror
                     <input class="content__item--input" type="text" name="email">
                 </div>
@@ -26,7 +28,9 @@
                         パスワード
                     </h3>
                     @error('password')
-                        {{ $message }}
+                        <p class="error">
+                            {{ $message }}
+                        </p>
                     @enderror
                     <input class="content__item--input" type="password" name="password">
                 </div>

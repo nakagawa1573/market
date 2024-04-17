@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SellRequest;
 use App\Models\Category;
+use App\Models\DeliveryAddress;
 use App\Models\Item;
 use App\Models\ItemCategory;
+use App\Models\Profile;
 use App\Models\PurchaseHistory;
 use App\Models\Status;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -17,26 +20,53 @@ class TransactionController extends Controller
 {
     public function show(Item $item_id)
     {
-        $item = $item_id;
-        return view('purchase', compact('item'));
+        $item = Item::with('user')->find($item_id->id);
+        session(['item' => $item]);
+        $user = User::with('profile')->find(Auth::user())->first();
+        if (!$user->profile) {
+            return back()->with('message', 'マイページからプロフィールの登録をしてください');
+        }else{
+            $profile = $user->profile->only(['post_code', 'address', 'building']);
+        }
+        $delivery = DeliveryAddress::where('user_id', $user->id)->first();
+        $stripe = new \Stripe\StripeClient(config('cashier.secret'));
+        $customerId = $user->stripe_customer_id;
+        if (!$customerId) {
+            $customerId = $stripe->customers->create([])->id;
+            User::find($user->id)->update(['stripe_customer_id' => $customerId]);
+        }
+        $clientSecret = $stripe->paymentIntents->create([
+            'amount' => $item_id->price,
+            'customer' => $customerId,
+            'currency' => 'jpy',
+            'application_fee_amount' => round($item->price * 0.1),
+            'transfer_data' => ['destination' => $item->user->stripe_account_id],
+        ])->client_secret;
+        return view('purchase', compact('clientSecret', 'profile', 'delivery'));
     }
 
     public function buy(Item $item_id)
     {
-        $purchase = ['user_id' => Auth::user()->id, 'item_id' => $item_id->id];
-        $count = PurchaseHistory::where($purchase)->count();
-        if ($count === 0) {
+        $item = Item::with('user')->where('id', $item_id->id)->first();
+        $flag = PurchaseHistory::where('item_id', $item->id)->exists();
+        if (!$flag) {
+            $purchase = ['user_id' => Auth::user()->id, 'item_id' => $item->id];
             PurchaseHistory::create($purchase);
-            return redirect('/');
         }
         return redirect('/');
     }
 
     public function create()
     {
-        $statuses = Status::all();
-        $categories = Category::all();
-        return view('sell', compact('statuses', 'categories'));
+        if (Auth::user()->stripe_account_id !== null) {
+            $statuses = Status::all();
+            $categories = Category::all();
+            return view('sell', compact('statuses', 'categories'));
+        }else {
+            $stripe = new StripeController();
+            $response = $stripe->store();
+            return $response;
+        }
     }
 
     public function store(SellRequest $request)

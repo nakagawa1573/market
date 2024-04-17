@@ -57,12 +57,12 @@ class ItemController extends Controller
         $favorites = Favorite::where('item_id', $item->id);
         $favoriteCount = $favorites->count();
         $purchaseFlag = PurchaseHistory::where('item_id', $item_id->id)->exists();
-        $commentCount = Comment::where('item_id', $item->id)->count();
+        $comments = Comment::with('user.profile')->where('item_id', $item->id)->get()->sortByDesc('created_at');
         $favoriteFlag = null;
         if (Auth::check()) {
             $favoriteFlag = $favorites->where('user_id', Auth::user()->id)->exists();
         }
-        return view('item', compact('item', 'favoriteCount', 'favoriteFlag', 'commentCount', 'purchaseFlag'));
+        return view('item', compact('item', 'favoriteCount', 'favoriteFlag', 'comments', 'purchaseFlag'));
     }
 
 
@@ -73,6 +73,12 @@ class ItemController extends Controller
         $comment['item_id'] = $item_id->id;
         Comment::create($comment);
         return back()->with('message', 'コメントを送信しました');
+    }
+
+    public function destroyComment(Comment $comment_id)
+    {
+        Comment::destroy($comment_id->id);
+        return back()->with('message', 'コメントを削除しました');
     }
 
     public function storeFavorite(Item $item_id)
@@ -88,7 +94,7 @@ class ItemController extends Controller
         return back();
     }
 
-    public function destroy(Item $item_id)
+    public function destroyFavorite(Item $item_id)
     {
         Favorite::where('user_id', Auth::user()->id)->where('item_id', $item_id->id)->delete();
         return back();

@@ -162,7 +162,9 @@ return [
         'status_id' => '商品の状態',
         'brand' => 'ブランド',
         'description' => '商品の説明',
-        'price' => '値段'
+        'price' => '値段',
+        'post_code' => '郵便番号',
+        'address' => '住所',
     ],
 
 ];

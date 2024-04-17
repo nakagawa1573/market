@@ -65,7 +65,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
 
         $param = [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => 1,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => '耳栓',
             'brand' => '3M',
@@ -78,7 +78,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
 
         $param = [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => 1,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => '大型バッグ（仏軍配給品）',
             'brand' => '',
@@ -93,7 +93,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
 
         $param = [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => 1,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => 'リュックサック（仏軍配給品）',
             'brand' => '',
@@ -108,7 +108,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
 
         $param = [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => 1,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => 'AMP72',
             'brand' => '5.11',
@@ -126,7 +126,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
 
         $param = [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => 1,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => 'Predator Triton 17X',
             'brand' => 'Predator',
@@ -139,7 +139,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
 
         $param = [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => 1,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => '仏軍迷彩服(夏用)',
             'brand' => '',
@@ -154,7 +154,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
 
         $param = [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => 1,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => 'スクラッチ寄せ集め',
             'brand' => '',
@@ -167,7 +167,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
 
         $param = [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => 1,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => 'びっくりチキン',
             'brand' => 'Pclife',
@@ -180,7 +180,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
 
         $param = [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => 1,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => 'ハーフラック、バーベル、ベンチ',
             'brand' => '',
@@ -193,7 +193,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
 
         $param = [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => 1,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => 'バトルロープ',
             'brand' => 'Yes4All',
@@ -206,7 +206,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
 
         $param = [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => 1,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => 'ケトルベル',
             'brand' => '',
@@ -221,7 +221,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($param);
 
         $param = [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => 1,
             'status_id' => Status::inRandomOrder()->first()->id,
             'name' => 'Dragon Egg Mk2',
             'brand' => 'Direct Action',
