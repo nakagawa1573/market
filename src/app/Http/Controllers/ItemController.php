@@ -77,6 +77,8 @@ class ItemController extends Controller
 
     public function destroyComment(Comment $comment_id)
     {
+        $this->authorize('admin', Auth::user()) || $this->authorize('destroy', $comment_id);
+        $user = Auth::user();
         Comment::destroy($comment_id->id);
         return back()->with('message', 'コメントを削除しました');
     }

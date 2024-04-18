@@ -18,11 +18,9 @@
                         <img src="{{ Storage::disk('s3')->url('/items/' . $item->img) }}">
                     @endif
                 </div>
-                <div class="item__wrapper">
-                    <h1 id="name">
-                        {{ $item->name }}
-                    </h1>
-                </div>
+                <h1 id="name">
+                    {{ $item->name }}
+                </h1>
             </div>
             <div class="content__box">
                 <h2 class="content__item--ttl">

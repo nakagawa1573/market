@@ -1,7 +1,7 @@
 .profile {
     display: flex;
     justify-content: space-between;
-    width: 1024px;
+    max-width: 1000px;
     margin: 0 auto;
     margin-top: 50px;
     align-items: center;
@@ -72,7 +72,7 @@
 .tab {
     height: 100%;
     line-height: 150px;
-    width: 1000px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -102,7 +102,7 @@
 }
 
 .content {
-    width: 1040px;
+    max-width: 1040px;
     margin: 50px auto;
     place-items: center;
     gap: 80px 40px;
@@ -143,4 +143,14 @@
     color: #fff;
     padding-right: 5px;
     background-color: rgba(95, 95, 95, 0.5);
+}
+
+@media screen and (max-width:768px) {
+    .profile {
+            width: 758px;
+        }
+
+    #main {
+        grid-template-columns: repeat(15, 1fr);
+    }
 }

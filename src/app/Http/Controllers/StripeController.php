@@ -37,7 +37,7 @@ class StripeController extends Controller
 
     public function update(Request $request)
     {
-        $accountId = $request->route('account_id');
+        $accountId = $request->route('stripe_account_id');
         User::find(Auth::user()->id)->update(['stripe_account_id' => $accountId]);
         return redirect('sell');
     }

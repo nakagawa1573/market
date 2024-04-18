@@ -145,3 +145,27 @@ tr {
     display: flex;
     justify-content: space-between;
 }
+
+@media screen and (max-width:1024px) {
+    #modal {
+        width: 500px;
+    }
+
+    .email__box {
+        height: 400px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .content {
+        width: 758px;
+    }
+
+    #modal{
+        width: 400px;
+    }
+
+    .email__box{
+        height: 300px;
+    }
+}

@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/purchase/{item_id}', [TransactionController::class, 'buy']);
 
     Route::post('/stripe', [StripeController::class, 'store']);
-    Route::get('/stripe/{account_id}', [StripeController::class, 'update']);
+    Route::get('/stripe/{stripe_account_id}', [StripeController::class, 'update']);
 
     Route::get('/admin', [AdminController::class, 'index']);
     Route::delete('/admin/delete', [AdminController::class, 'destroy']);
