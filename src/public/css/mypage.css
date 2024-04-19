@@ -1,0 +1,156 @@
+.profile {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 50px;
+    align-items: center;
+}
+
+.profile__item {
+    display: flex;
+    align-items: center;
+}
+
+.profile__item--img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 30px;
+    background-color: #D9D9D9;
+}
+
+.profile__item--img>img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.profile__item--name {
+    height: 1em;
+    line-height: 1em;
+    margin: 0;
+}
+
+.admin__btn,
+.profile__btn {
+    height: 50px;
+    background-color: #fff;
+    border-radius: 6px;
+    border: 2px solid #FF5555;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.admin__btn {
+    width: 100px;
+    margin-right: 20px;
+}
+
+.profile__btn {
+    width: 250px;
+}
+
+.admin__btn>a,
+.profile__btn>a {
+    text-decoration: none;
+    color: #FF5555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.tab__wrapper {
+    border-bottom: 1px solid #5f5f5f;
+    height: 90px;
+}
+
+.tab {
+    height: 100%;
+    line-height: 150px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.tab>a:first-child {
+    margin-right: 50px;
+}
+
+#none {
+    color: #5F5F5F;
+}
+
+#select {
+    color: red;
+}
+
+.tab>button:first-child {
+    margin-right: 50px;
+}
+
+.tab__item {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.content {
+    max-width: 1040px;
+    margin: 50px auto;
+    place-items: center;
+    gap: 80px 40px;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+}
+
+#modal {
+    display: none;
+}
+
+.content__item {
+    width: 200px;
+    height: 200px;
+    grid-column: auto/span 5;
+    border-radius: 3px;
+    background-color: #D9D9D9;
+    position: relative;
+}
+
+.content__item--link__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.content__item--name {
+    margin: 0;
+    font-size: 13px;
+}
+
+.content__item--price {
+    position: absolute;
+    bottom: 5px;
+    color: #fff;
+    padding-right: 5px;
+    background-color: rgba(95, 95, 95, 0.5);
+}
+
+@media screen and (max-width:768px) {
+    .profile {
+            width: 758px;
+        }
+
+    #main {
+        grid-template-columns: repeat(15, 1fr);
+    }
+}

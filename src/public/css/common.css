@@ -1,0 +1,125 @@
+header {
+    background-color: #000;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__ttl {
+    padding-left: 50px;
+    padding-right: 10px;
+}
+
+.header__ttl--img {
+    width: 100%;
+    max-width: 300px;
+    min-width: 220px;
+}
+
+#search {
+    width: 50%;
+    min-width: 250px;
+    position: relative;
+}
+
+nav {
+    padding-left: 10px;
+    padding-right: 50px;
+}
+
+.header__item--search {
+    height: 40px;
+    width: 100%;
+    border-radius: 6px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 18px;
+    border: none;
+}
+
+#search__btn {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 40px;
+    padding: 0;
+    border-radius: 6px;
+}
+
+#search__btn:hover {
+    background-color: rgba(95, 95, 95, 0.2);
+}
+
+#search__btn>img {
+    width: 20px;
+    height: 20px;
+}
+
+.header__item--link__box {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    align-items: center;
+}
+
+.header__item--link__box>li {
+    list-style: none;
+}
+
+.header__item--link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.header__item--link__btn {
+    width: 80px;
+    height: 40px;
+    font-size: 18px;
+    border: none;
+    border-radius: 3px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+@media screen and (max-width:1024px) {
+    .header__ttl {
+        padding-left: 20px;
+    }
+
+    nav {
+        padding-right: 20px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    header {
+        width: fit-content;
+        flex-wrap: wrap;
+        height: 150px;
+        width: 768px;
+    }
+
+    .header__ttl {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #search {
+        margin-left: 20px;
+    }
+
+    main {
+        width: 768px;
+    }
+}

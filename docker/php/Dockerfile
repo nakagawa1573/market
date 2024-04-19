@@ -1,0 +1,23 @@
+FROM php:8.2-fpm
+
+COPY php.ini /usr/local/etc/php/
+
+RUN apt-get update && apt-get install -y \
+		libfreetype-dev \
+		libjpeg62-turbo-dev \
+		libpng-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+	  && docker-php-ext-install -j$(nproc) gd\
+    && apt install -y default-mysql-client zlib1g-dev libzip-dev unzip\
+    && docker-php-ext-install pdo_mysql zip
+
+
+RUN curl -sS https://getcomposer.org/installer | php \
+  && mv composer.phar /usr/local/bin/composer \
+  && composer self-update
+
+RUN curl -sSL https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 -o mhsendmail && \
+  chmod +x mhsendmail && \
+  mv mhsendmail /usr/local/bin/mhsendmail
+
+WORKDIR /var/www
