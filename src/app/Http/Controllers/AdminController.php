@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeleteUserRequest;
 use App\Http\Requests\SendEmailRequest;
+use App\Jobs\SendEmailJob;
 use App\Mail\NotificationEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+
 
 class AdminController extends Controller
 {
@@ -18,7 +21,7 @@ class AdminController extends Controller
         return view('admin', compact('users'));
     }
 
-    public function destroy(Request $request)
+    public function destroy(DeleteUserRequest $request)
     {
         $this->authorize('admin', Auth::user());
         User::destroy($request->id);

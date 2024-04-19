@@ -22,6 +22,8 @@ class SendEmailRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id' => ['required', 'array'],
+            'id.*' => ['numeric'],
             'subject' =>['required'],
             'text' =>['required'],
         ];
@@ -30,6 +32,7 @@ class SendEmailRequest extends FormRequest
     public function messages()
     {
         return[
+            'id.required' => 'ユーザーを選択してください',
             'subject.required' => '件名を入力してください',
             'text.required' => '本文を入力してください',
         ];

@@ -68,14 +68,6 @@ class HeaderTest extends TestCase
             ->assertViewIs('auth.login');
     }
 
-    public function testAccessSellPage()
-    {
-        $user = User::factory()->create();
-        $response = $this->followingRedirects()->actingAs($user)->get('/sell');
-        $response->assertStatus(200)
-            ->assertViewIs('sell');
-    }
-
     public function testAccessSellPageNotLoginStatus()
     {
         $response = $this->followingRedirects()->get('/sell');

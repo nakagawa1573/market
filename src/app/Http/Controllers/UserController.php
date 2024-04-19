@@ -31,7 +31,6 @@ class UserController extends Controller
 
     public function storeProfile(ProfileRequest $request)
     {
-        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
         $profile = $request->only(['name', 'post_code', 'address', 'building']);
         $profile['user_id'] = Auth::user()->id;
         $img = $request->file('img');

@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CommentRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ItemController extends Controller
 {
@@ -77,10 +78,12 @@ class ItemController extends Controller
 
     public function destroyComment(Comment $comment_id)
     {
-        $this->authorize('admin', Auth::user()) || $this->authorize('destroy', $comment_id);
-        $user = Auth::user();
-        Comment::destroy($comment_id->id);
-        return back()->with('message', 'コメントを削除しました');
+        if (Gate::allows('admin', Auth::user()) || Gate::allows('destroy', $comment_id)) {
+            Comment::destroy($comment_id->id);
+            return back()->with('message', 'コメントを削除しました');
+        }else{
+            abort(403);
+        }
     }
 
     public function storeFavorite(Item $item_id)

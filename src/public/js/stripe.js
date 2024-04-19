@@ -15,7 +15,7 @@ cardButton.addEventListener("click", async (e) => {
         redirect: "if_required",
     });
     if (error) {
-        alert(error.message);
+        console.log(error.message);
     } else {
         document.getElementById("purchase-form").submit();
     }

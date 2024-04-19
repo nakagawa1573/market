@@ -18,6 +18,22 @@ class SellTest extends TestCase
     /**
      * A basic feature test example.
      */
+    public function testAccessSellPage()
+    {
+        $user = User::factory()->create();
+        $user['stripe_account_id'] = 'acct_1P5JLMPeBToOxOeF';
+        $response = $this->followingRedirects()->actingAs($user)->get('/sell');
+        $response->assertStatus(200)
+            ->assertViewIs('sell');
+    }
+
+    public function testAccessSellPageAccountIdNull()
+    {
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)->get('/sell');
+        $this->assertStringContainsString('https://connect.stripe.com/setup/e/', $response->headers->get('Location'));
+    }
+
     public function testSellSuccess(): void
     {
         $user = User::factory()->create();

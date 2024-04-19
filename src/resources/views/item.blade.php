@@ -89,10 +89,10 @@
                                 <div class="comment__img">
                                     @if (app()->isLocal())
                                         <img id="img"
-                                            src="{{ Storage::disk('public')->url('/profiles/' . $profile->img) }}">
+                                            src="{{ Storage::disk('public')->url('/profiles/' . $comment->user->profile->img) }}">
                                     @elseif(app()->isProduction())
                                         <img id="img"
-                                            src="{{ Storage::disk('s3')->url('/profiles/' . $profile->img) }}">
+                                            src="{{ Storage::disk('s3')->url('/profiles/' . $comment->user->profile->img) }}">
                                     @endif
                                 </div>
                                 <p>
@@ -119,7 +119,7 @@
                                     </button>
                                 </form>
                             @else
-                                @if ($comment->user_id === $user->id)
+                                @if (Auth::check() && $comment->user_id === $user->id)
                                     <form action="/item/comment/{{ $comment->id }}" method="post">
                                         @csrf
                                         @method('delete')

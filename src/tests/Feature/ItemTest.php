@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Comment;
 use App\Models\Favorite;
+use App\Models\Profile;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -61,7 +62,7 @@ class ItemTest extends TestCase
         $item = Item::inRandomOrder()->first();
         $count = Comment::where('item_id', $item->id)->count();
         $response = $this->get('/item/' . $item->id);
-        $commentCount = $response->viewData('commentCount');
+        $commentCount = $response->viewData('comments')->count();
         $this->assertEquals($count, $commentCount);
     }
 
@@ -70,7 +71,7 @@ class ItemTest extends TestCase
         $user = User::factory()->create();
         $item = Item::inRandomOrder()->first();
         $count = Comment::where('item_id', $item->id)->count();
-        $response = $this->actingAs($user)->post('/item/comment/'.$item->id,[
+        $response = $this->actingAs($user)->post('/item/comment/' . $item->id, [
             'comment' => 'testest'
         ]);
         $this->assertDatabaseHas('comments', [
@@ -86,7 +87,7 @@ class ItemTest extends TestCase
             'comment' => 'testest'
         ]);
         $response->assertViewIs('auth.login');
-        $this->assertDatabaseMissing('comments',[
+        $this->assertDatabaseMissing('comments', [
             'user_id' => $user->id,
         ]);
     }
@@ -121,18 +122,48 @@ class ItemTest extends TestCase
         $response->assertSessionHasErrors('comment');
     }
 
-    public function testAccessPurchasePage()
+    public function testCommentDeleteMine()
     {
         $user = User::factory()->create();
-        $item = Item::inRandomOrder()->first();
-        $response = $this->actingAs($user)->get('/purchase/'.$item->id);
-        $response->assertStatus(200)->assertViewIs('purchase');
+        $data = [
+            'user_id' => $user->id,
+            'item_id' => Item::inRandomOrder()->first()->id,
+            'comment' => 'testtest',
+        ];
+        $comment = Comment::create($data);
+        $this->assertDatabaseHas('comments', $data);
+        $response = $this->actingAs($user)->delete('/item/comment/' . $comment->id);
+        $response->assertStatus(302)->assertSessionHas('message', 'コメントを削除しました');
+        $this->assertDatabaseMissing('comments', $data);
     }
 
-    public function testAccessPurchasePageNotLogin()
+    public function testCommentDeleteErrorNotMine()
     {
-        $item = Item::inRandomOrder()->first();
-        $response = $this->followingRedirects()->get('/purchase/' . $item->id);
-        $response->assertStatus(200)->assertViewIs('auth.login');
+        $data = [
+            'user_id' => User::inRandomOrder()->first()->id,
+            'item_id' => Item::inRandomOrder()->first()->id,
+            'comment' => 'testtest',
+        ];
+        $comment = Comment::create($data);
+        $this->assertDatabaseHas('comments', $data);
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)->delete('/item/comment/' . $comment->id);
+        $response->assertStatus(403);
+        $this->assertDatabaseHas('comments', $data);
+    }
+
+    public function testCommentDeleteAdmin(){
+        $data = [
+            'user_id' => User::inRandomOrder()->first()->id,
+            'item_id' => Item::inRandomOrder()->first()->id,
+            'comment' => 'testtest',
+        ];
+        $comment = Comment::create($data);
+        $this->assertDatabaseHas('comments', $data);
+        $user = User::factory()->create();
+        $user->update(['role' => 'admin']);
+        $response = $this->actingAs($user)->delete('/item/comment/' . $comment->id);
+        $response->assertStatus(302)->assertSessionHas('message', 'コメントを削除しました');
+        $this->assertDatabaseMissing('comments', $data);
     }
 }
