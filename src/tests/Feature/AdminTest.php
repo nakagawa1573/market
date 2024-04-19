@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Mail\NotificationEmail;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Mail;
 

@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Models\DeliveryAddress;
 use App\Models\Item;
 use App\Models\ItemCategory;
-use App\Models\Profile;
 use App\Models\PurchaseHistory;
 use App\Models\Status;
 use App\Models\User;

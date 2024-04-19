@@ -163,7 +163,6 @@
                             カテゴリー
                         </h3>
                         <div id="category__wrapper">
-                            {{-- カテゴリーが多く選ばれたときの表示、文字数の多いカテゴリーの表示 --}}
                             @foreach ($item->category as $category)
                                 <p id="category">
                                     {{ $category->name }}

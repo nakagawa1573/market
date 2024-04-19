@@ -3,13 +3,10 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\WebhookController;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*

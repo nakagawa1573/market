@@ -99,7 +99,7 @@ class UserController extends Controller
     public function destroy()
     {
         DeliveryAddress::where('user_id', Auth::user()->id)->delete();
-        $itemId = session('item')->id;
+        session('item')->id;
         return back();
     }
 }

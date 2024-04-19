@@ -6,7 +6,6 @@ use App\Models\Item;
 use App\Models\PurchaseHistory;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class MypageTest extends TestCase

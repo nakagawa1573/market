@@ -4,14 +4,10 @@ namespace Tests\Feature;
 
 use App\Models\Comment;
 use App\Models\Favorite;
-use App\Models\Profile;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-
-use function PHPUnit\Framework\assertTrue;
 
 class ItemTest extends TestCase
 {

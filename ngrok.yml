@@ -1,7 +1,0 @@
-version: "2"
-authtoken: 2e4R8MJ8cTuPmqbzhon1Zl6mUhB_ifQ1A3eRQnbXX9F2nhdS
-tunnels:
-  website:
-    proto: http
-    addr: host.docker.internal:80
-    host_header: rewrite
