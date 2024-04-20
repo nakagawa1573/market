@@ -1,0 +1,20 @@
+version: 2.1
+jobs:
+  test:
+    docker:
+      - image: cimg/php:8.2.6
+    steps:
+      - checkout
+      - run:
+          name: echo
+          command: echo "Hello, world!!"
+workflows:
+  test_workflow:
+    jobs:
+      - test
+
+
+
+
+
+
