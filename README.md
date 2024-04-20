@@ -6,7 +6,7 @@ coachtechブランドのアイテムを出品する(模擬)
 
 ## アプリケーションURL
 - 開発環境：http://localhost/
-- 本番環境：
+- 本番環境：http://54.168.236.171
 - phpMyAdmin：http://localhost:8080/
 - MailHog：http://localhost:8025/
 
@@ -289,9 +289,12 @@ Git , GitHub
         MAIL_FROM_ADDRESS="hello@example.com"
         MAIL_FROM_NAME="COACHTECHフリマ"
 
+        STRIPE_KEY=Stripeの公開可能キー
+        STRIPE_SECRET=Stripeのシークレットキー
+
         RETURN_URL= http://localhost/
-5.         php artisan key:generate
-6. もしマイグレーションとシーディングがされていなければ、自分で実行してください
+4.         php artisan key:generate
+5. もしマイグレーションとシーディングがされていなければ、自分で実行してください
 
 
            php artisan migrate
