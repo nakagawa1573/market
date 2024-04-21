@@ -13,11 +13,11 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo docker-php-ext-install zip
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "src/composer.json" }}
-            - v1-dependencies-
+      # - run: sudo docker-php-ext-install zip
+      # - restore_cache:
+      #     keys:
+      #       - v1-dependencies-{{ checksum "src/composer.json" }}
+      #       - v1-dependencies-
       - run:
           name: composer install
           working_directory: src
