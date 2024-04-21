@@ -61,7 +61,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - SHA256:UxBGF4LwTSSm60G0C7aEQWNKk6wXBbvQiwFcutYnAjA
-      - run: ssh ec2-user@54.168.236.171 'cd /var/www/market && git pull'
+      - run: ssh ec2-user@54.168.236.171 -p 22 'cd /var/www/market && git pull'
 
 
 workflows:
