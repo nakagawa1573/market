@@ -32,12 +32,6 @@ jobs:
           keys:
             - node-v1-{{ checksum "src/package.json" }}
             - node-v1-
-      - run: php artisan key:generate
-      - save_cache:
-          key: node-v1-{{ checksum "src/package.json" }}
-          paths:
-            - node_modules
-      
       - run: touch storage/testing.sqlite
       - run: php artisan migrate --env=testing --database=sqlite_testing --force
 
