@@ -11,13 +11,6 @@ jobs:
           DB_USERNAME: root
           DB_PASSWORD: root
       - image: cimg/mysql:8.0
-        environment:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: demo_test
-          MYSQL_ROOT_HOST: '%'
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          TZ: Asia/Tokyo
-
     steps:
       - checkout
       # - run: sudo docker-php-ext-install zip
