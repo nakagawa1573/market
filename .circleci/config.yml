@@ -60,7 +60,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - SHA256:JMmFDVnRukQz926qEzNtMODmJEWyHMvOCOeMR3SmuDY
+            - $KEY_FINGERPRINT
       - run: ssh -o 'StrictHostKeyChecking no' ec2-user@54.168.236.171 'cd /var/www/market && git pull'
 
 
