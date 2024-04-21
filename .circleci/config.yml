@@ -11,21 +11,16 @@ jobs:
           DB_USERNAME: root
           DB_PASSWORD: root
 
-      - image: cimg/mysql:8.0
-        command: mysqld --default-authentication-plugin=mysql_native_password
-        environment:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: laravel_db
-          MYSQL_USER: laravel_user
-          MYSQL_PASSWORD: laravel_pass
+      # - image: cimg/mysql:8.0
+      #   command: mysqld --default-authentication-plugin=mysql_native_password
+      #   environment:
+      #     MYSQL_ROOT_PASSWORD: root
+      #     MYSQL_DATABASE: laravel_db
+      #     MYSQL_USER: laravel_user
+      #     MYSQL_PASSWORD: laravel_pass
 
     steps:
       - checkout
-      # - run: sudo docker-php-ext-install zip
-      # - restore_cache:
-      #     keys:
-      #       - v1-dependencies-{{ checksum "src/composer.json" }}
-      #       - v1-dependencies-
       - run:
           name: composer install
           working_directory: src
@@ -34,15 +29,15 @@ jobs:
           name: run key generate
           working_directory: src
           command: php artisan key:generate
-      # - run:
-      #     name: run migrate
-      #     working_directory: src
-      #     command: php artisan migrate --env=testing
-      # - run:
-      #     name: run seed
-      #     working_directory: src
-      #     command: php artisan db:seed --env=testing
-      # - run: ./vendor/bin/phpunit
+      - run:
+          name: run migrate
+          working_directory: src
+          command: php artisan migrate --env=testing
+      - run:
+          name: run seed
+          working_directory: src
+          command: php artisan db:seed --env=testing
+      - run: ./vendor/bin/phpunit
 
 workflows:
   test_workflow:
