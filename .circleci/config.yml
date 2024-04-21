@@ -14,13 +14,10 @@ jobs:
       - image: cimg/mysql:8.0
         command: mysqld --default-authentication-plugin=mysql_native_password
         environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: demo_test
           MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel_db
           MYSQL_USER: laravel_user
           MYSQL_PASSWORD: laravel_pass
-          MYSQL_ROOT_HOST: '%'
-          MYSQL_HOST: mysql
 
     steps:
       - checkout
