@@ -60,8 +60,12 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - SHA256:UxBGF4LwTSSm60G0C7aEQWNKk6wXBbvQiwFcutYnAjA
-      - run: ssh ec2-user@54.168.236.171 -p 22 'cd /var/www/market && git pull'
+            - $KEY_FINGERPRINT
+      - run: ssh -o 'StrictHostKeyChecking no' $USER_NAME@$HOST_NAME 'cd /var/www/market && git pull'
+      - run:
+          name: migrate
+          working_directory: src
+          command: cd /src && php artisan migrate
 
 
 workflows:
@@ -74,9 +78,3 @@ workflows:
           filters:
             branches:
               only: main
-
-
-
-
-
-
