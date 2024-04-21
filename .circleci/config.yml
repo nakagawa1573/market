@@ -61,6 +61,9 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - $KEY_FINGERPRINT
+      - run:
+          name: Add SSH Host Key
+          command: ssh-keyscan -H 54.168.236.171 >> ~/.ssh/known_hosts
       - run: ssh ec2-user@54.168.236.171 'cd /var/www/market && git pull'
 
 
