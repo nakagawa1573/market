@@ -21,7 +21,7 @@ jobs:
 
       - run:
           name: composer install
-          working_directory: backend
+          working_directory: src
           command: composer install
 
       - save_cache:
