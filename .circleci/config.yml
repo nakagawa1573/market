@@ -42,10 +42,27 @@ jobs:
           working_directory: src
           command: vendor/bin/phpunit tests/Feature/
 
+  deploy:
+    - image: circleci/classic:edge
+
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - SHA256:UxBGF4LwTSSm60G0C7aEQWNKk6wXBbvQiwFcutYnAjA
+      - run: ssh ec2-user@54.168.236.171 'cd /var/www/market && git pull'
+
+
 workflows:
   test_workflow:
     jobs:
       - test
+      - deploy:
+          required:
+            - test
+          fileters:
+            branches:
+              only: main
 
 
 
