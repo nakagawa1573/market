@@ -22,14 +22,18 @@ jobs:
           name: composer install
           working_directory: src
           command: composer install
-      - run: cd src/
-      - run: pwd
       - run:
           name: run key generate
-          working_directory: backend
+          working_directory: src
           command: php artisan key:generate
-      - run: php artisan migrate --env=testing
-      - run: php artisan db:seed --env=testing
+      - run:
+          name: run migrate
+          working_directory: src
+          command: php artisan migrate --env=testing
+      - run:
+          name: run seed
+          working_directory: src
+          command: php artisan db:seed --env=testing
       - run: ./vendor/bin/phpunit
 
 workflows:
