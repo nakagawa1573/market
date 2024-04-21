@@ -61,7 +61,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - $KEY_FINGERPRINT
-      - run: ssh -o $USER_NAME@$HOST_NAME 'cd /var/www/market && git pull'
+      - run: ssh -o ec2-user@54.168.236.171 'cd /var/www/market && git pull'
 
 
 workflows:
