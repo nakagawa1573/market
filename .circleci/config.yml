@@ -32,7 +32,7 @@ jobs:
           keys:
             - node-v1-{{ checksum "src/package.json" }}
             - node-v1-
-      - run: yarn install
+      - run: php artisan key:generate
       - save_cache:
           key: node-v1-{{ checksum "src/package.json" }}
           paths:
