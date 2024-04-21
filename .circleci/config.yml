@@ -12,8 +12,8 @@ jobs:
           DB_PASSWORD: laravel_pass
           MAIL_HOST: mailhog
           MAIL_FROM_NAME: "COACHTECHフリマ"
-          STRIPE_KEY: $STRIPE_KEY
-          STRIPE_SECRET: $STRIPE_SECRET
+          # STRIPE_KEY: $STRIPE_KEY
+          # STRIPE_SECRET: $STRIPE_SECRET
 
       - image: cimg/mysql:8.0
         command: mysqld --default-authentication-plugin=mysql_native_password
