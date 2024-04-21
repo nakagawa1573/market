@@ -43,7 +43,8 @@ jobs:
           command: vendor/bin/phpunit tests/Feature/
 
   deploy:
-    - image: circleci/classic:edge
+    docker:
+      - image: circleci/classic:edge
 
     steps:
       - checkout
@@ -58,9 +59,9 @@ workflows:
     jobs:
       - test
       - deploy:
-          required:
+          requires:
             - test
-          fileters:
+          filters:
             branches:
               only: main
 
