@@ -10,6 +10,8 @@ jobs:
           DB_DATABASE: demo_test
           DB_USERNAME: laravel_user
           DB_PASSWORD: laravel_pass
+          STRIPE_KEY: $STRIPE_KEY
+          STRIPE_SECRET: $STRIPE_SECRET
 
       - image: cimg/mysql:8.0
         command: mysqld --default-authentication-plugin=mysql_native_password
@@ -25,6 +27,12 @@ jobs:
           name: composer install
           working_directory: src
           command: composer install
+      - run:
+          name: set up env
+          working_directory: src
+          command:
+            export MAIL_HOST=mailhog
+            export MAIL_FROM_NAME="COACHTECHフリマ"
       - run:
           name: run key generate
           working_directory: src
