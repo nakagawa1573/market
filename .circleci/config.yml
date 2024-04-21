@@ -54,7 +54,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/classic:edge
+      - image: cimg/base:2024.02
 
     steps:
       - checkout
