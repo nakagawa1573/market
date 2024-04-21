@@ -32,8 +32,8 @@ jobs:
           working_directory: src
           command:
             cp src/.env.example src/.env.testing
-            export MAIL_HOST=mailhog
-            export MAIL_FROM_NAME="COACHTECHフリマ"
+            # export MAIL_HOST=mailhog
+            # export MAIL_FROM_NAME="COACHTECHフリマ"
       - run:
           name: run key generate
           working_directory: src
