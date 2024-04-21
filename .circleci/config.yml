@@ -32,10 +32,10 @@ jobs:
           keys:
             - node-v1-{{ checksum "src/package.json" }}
             - node-v1-
-      - run: touch storage/testing.sqlite
-      - run: php artisan migrate --env=testing --database=sqlite_testing --force
-
+      - run: php artisan migrate --env=testing
+      - run: php artisan db:seed --env=testing
       - run: ./vendor/bin/phpunit
+      
 workflows:
   test_workflow:
     jobs:
