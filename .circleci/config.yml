@@ -37,7 +37,10 @@ jobs:
           name: run seed
           working_directory: src
           command: php artisan db:seed --env=testing
-      - run: php artisan test
+      - run:
+          name: run test
+          working_directory: src
+          command: php artisan test
 
 workflows:
   test_workflow:
