@@ -10,7 +10,7 @@ jobs:
           DB_DATABASE: demo_test
           DB_USERNAME: root
           DB_PASSWORD: root
-    docker:
+
       - image: cimg/mysql:8.0
         command: mysqld --authentication_polic=mysql_native_password
         environment:
