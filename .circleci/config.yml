@@ -22,8 +22,8 @@ jobs:
           name: composer install
           working_directory: src
           command: composer install
-      - run: pwd
       - run: cd src/
+      - run: pwd
       - run:
           name: run key generate
           working_directory: backend
