@@ -33,7 +33,7 @@ class ItemTest extends TestCase
         $response->assertRedirect('/login');
     }
 
-    public function testFavoriteErrorAgain(): void
+    public function testFavoriteErrorAgain()
     {
         $user = User::factory()->create();
         $item = Item::inRandomOrder()->first();

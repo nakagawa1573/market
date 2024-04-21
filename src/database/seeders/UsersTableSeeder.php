@@ -24,6 +24,6 @@ class UsersTableSeeder extends Seeder
         ];
         DB::table('users')->insert($param);
 
-        User::factory()->count(100)->create();
+        User::factory()->count(50)->create();
     }
 }
