@@ -31,7 +31,7 @@ jobs:
           name: set up env
           working_directory: src
           command:
-            cp src/.env.example src/.env.testing
+            cp .env.example .env.testing
             # export MAIL_HOST=mailhog
             # export MAIL_FROM_NAME="COACHTECHフリマ"
       - run:
