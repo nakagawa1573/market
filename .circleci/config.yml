@@ -10,17 +10,13 @@ jobs:
           DB_DATABASE: demo_test
           DB_USERNAME: root
           DB_PASSWORD: root
-      - image: cimg/mysql:8.0
-        environment:
-          MYSQL_DATABASE: demo_test
-          MYSQL_ROOT_USER: root
-          MYSQL_ROOT_PASSWORD: root
+
     steps:
       - checkout
       - run: sudo docker-php-ext-install zip
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-{{ checksum "src/composer.json" }}
             - v1-dependencies-
 
       - run:
@@ -29,7 +25,7 @@ jobs:
           command: composer install
 
       - save_cache:
-          key: v1-dependencies-{{ checksum "composer.json" }}
+          key: v1-dependencies-{{ checksum "src/composer.json" }}
           paths:
             - ./vendor
       - restore_cache:
