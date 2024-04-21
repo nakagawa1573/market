@@ -60,7 +60,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - $KEY_FINGERPRINT
+            - SHA256:JMmFDVnRukQz926qEzNtMODmJEWyHMvOCOeMR3SmuDY
       - run: ssh -i .ssh/nikaido.pem ec2-user@54.168.236.171 'cd /var/www/market && git pull'
 
 
