@@ -10,8 +10,8 @@ jobs:
           DB_DATABASE: demo_test
           DB_USERNAME: laravel_user
           DB_PASSWORD: laravel_pass
-          MAIL_HOST: mailhog
-          MAIL_FROM_NAME: "COACHTECHフリマ"
+          # MAIL_HOST: mailhog
+          # MAIL_FROM_NAME: "COACHTECHフリマ"
           # STRIPE_KEY: $STRIPE_KEY
           # STRIPE_SECRET: $STRIPE_SECRET
 
@@ -29,11 +29,11 @@ jobs:
           name: composer install
           working_directory: src
           command: composer install
-      - run:
-          name: set up env
-          working_directory: src
-          command:
-            cp .env.example .env.testing
+      # - run:
+      #     name: set up env
+      #     working_directory: src
+      #     command:
+      #       cp .env.example .env.testing
       - run:
           name: run key generate
           working_directory: src
