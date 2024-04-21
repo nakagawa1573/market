@@ -11,14 +11,12 @@ jobs:
           DB_USERNAME: root
           DB_PASSWORD: root
       - image: cimg/mysql:8.0
+        command: mysqld --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: demo_test
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-        command: mysqld --default-authentication-plugin=mysql_native_password
-        volumes:
-          - ./docker/mysql/data:/var/lib/mysql
-          - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+          MYSQL_USER: laravel_user
+          MYSQL_PASSWORD: laravel_pass
 
     steps:
       - checkout
