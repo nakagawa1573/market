@@ -2,12 +2,35 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: cimg/php:8.2.6
+      - image: cimg/php:8.2
     steps:
       - checkout
-      - run:
-          name: echo
-          command: echo "Hello, world!!"
+      - run: sudo docker-php-ext-install zip
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
+
+      - run: composer install -n --prefer-dist
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+      - restore_cache:
+          keys:
+            - node-v1-{{ checksum "package.json" }}
+            - node-v1-
+      - run: yarn install
+      - save_cache:
+          key: node-v1-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      
+      - run: touch storage/testing.sqlite
+      - run: php artisan migrate --env=testing --database=sqlite_testing --force
+
+      - run: ./vendor/bin/phpunit
 workflows:
   test_workflow:
     jobs:
