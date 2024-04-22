@@ -1,5 +1,5 @@
 .content {
-    width: 650px;
+    max-width: 650px;
     margin: 100px auto;
 }
 
@@ -7,8 +7,15 @@
     text-align: center;
 }
 
+.content>form{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
 .content__item {
-    margin-top: 80px;
+    width: 95%;
+    margin: 80px auto 0;
 }
 
 
@@ -121,7 +128,7 @@
 }
 
 .content__btn {
-    width: 100%;
+    width: 95%;
     height: 50px;
     margin-top: 100px;
     background-color: #FF5555;
@@ -131,4 +138,14 @@
     font-size: 22px;
     font-weight: bold;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .content {
+        margin: 50px auto;
+    }
+
+    .content__item{
+        margin-top: 40px;
+    }
 }

@@ -29,13 +29,13 @@
                     <th>
                         メールアドレス
                     </th>
-                    <th>
+                    <th class="hidden__later">
                         管理者
                     </th>
-                    <th>
+                    <th class="hidden__later">
                         作成日
                     </th>
-                    <th>
+                    <th class="hidden__later">
                         最終ログイン
                     </th>
                 </tr>
@@ -50,17 +50,17 @@
                         <td id="email">
                             {{ $user->email }}
                         </td>
-                        <td id="role">
+                        <td id="role" class="hidden__later">
                             @if ($user->role === 'admin')
                                 はい
                             @else
                                 いいえ
                             @endif
                         </td>
-                        <td id="date">
+                        <td id="date" class="hidden__later">
                             {{ $user->created_at->format('Y-m-d') }}
                         </td>
-                        <td id="date">
+                        <td id="date" class="hidden__later">
                             {{ $user->login_at !== null ? Carbon\Carbon::parse($user->login_at)->format('Y-m-d H:i') : '' }}
                         </td>
                     </tr>

@@ -1,10 +1,15 @@
 .content {
-    width: 650px;
+    max-width: 650px;
     margin: 100px auto;
 }
 
 .content__ttl {
     text-align: center;
+}
+
+.content__form {
+    width: 95%;
+    margin: 0 auto;
 }
 
 .content__form--img {
@@ -39,7 +44,7 @@
     cursor: pointer;
 }
 
-.content__form--img__btn>label{
+.content__form--img__btn>label {
     cursor: pointer;
     width: 100%;
     height: 100%;
@@ -50,6 +55,11 @@
 
 #img {
     display: none;
+}
+
+#wrapper__btn {
+    display: flex;
+    align-items: center;
 }
 
 .content__img--btn>label {
@@ -92,7 +102,7 @@
     cursor: pointer;
 }
 
-.error{
+.error {
     color: red;
     margin: 0;
 }
@@ -106,4 +116,19 @@
     margin: 0 30px;
     font-weight: bold;
     border-radius: 6px;
+}
+
+@media screen and (max-width:768px) {
+    .content {
+        margin: 50px auto;
+    }
+
+    .content__form--img {
+        align-items: normal;
+        flex-flow: column;
+    }
+
+    #wrapper__btn {
+        margin-top: 30px;
+    }
 }

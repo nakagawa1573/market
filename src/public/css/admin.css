@@ -1,5 +1,5 @@
 .content {
-    width: 800px;
+    max-width: 800px;
     margin: 50px auto;
 }
 
@@ -72,6 +72,7 @@ tr {
 
 #modal {
     width: 600px;
+    min-width: 320px;
     position: fixed;
     bottom: 0;
     right: 10px;
@@ -133,14 +134,14 @@ tr {
     cursor: pointer;
 }
 
-.email__btn--delete{
+.email__btn--delete {
     border: none;
     background-color: transparent;
     width: 30px;
     cursor: pointer;
 }
 
-.email__btn--wrapper{
+.email__btn--wrapper {
     padding: 20px 20px;
     display: flex;
     justify-content: space-between;
@@ -148,7 +149,7 @@ tr {
 
 @media screen and (max-width:1024px) {
     #modal {
-        width: 500px;
+        width: 50%;
     }
 
     .email__box {
@@ -157,15 +158,19 @@ tr {
 }
 
 @media screen and (max-width:768px) {
-    .content {
-        width: 758px;
-    }
-
-    #modal{
-        width: 400px;
-    }
-
-    .email__box{
+    .email__box {
         height: 300px;
+    }
+}
+
+@media screen and (max-width:425px) {
+    .hidden__later {
+        display: none;
+    }
+}
+
+@media screen and (max-width:330px) {
+    #modal {
+        right: 0;
     }
 }
