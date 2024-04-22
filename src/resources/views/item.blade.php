@@ -90,7 +90,7 @@
                                     @if (app()->isLocal())
                                         <img src="{{$comment->user->profile->img ? Storage::disk('public')->url('/profiles/' . $comment->user->profile->img) : Storage::disk('public')->url('/icons/person.svg')}}">
                                     @elseif(app()->isProduction())
-                                        <img src="{{$comment->user->profile->img ? Storage::disk('s3')->url('/profiles/' . $comment->user->profile->img) : Storage::disk('s3')->url('/icons/person.svg')}}}}">
+                                        <img src="{{$comment->user->profile->img ? Storage::disk('s3')->url('/profiles/' . $comment->user->profile->img) : Storage::disk('public')->url('/icons/person.svg')}}}}">
                                     @endif
                                 </div>
                                 <p>
