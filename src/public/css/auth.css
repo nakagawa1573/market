@@ -1,5 +1,5 @@
 .content {
-    width: 500px;
+    max-width: 500px;
     margin: 100px auto;
     text-align: center;
 }
@@ -43,4 +43,15 @@
 .error{
     color: red;
     margin: 0;
+}
+
+@media screen and (max-width:768px) {
+    .content{
+        margin: 50px auto;
+    }
+
+    .content__item{
+        width: 95%;
+        margin: 0 auto 30px;
+    }
 }

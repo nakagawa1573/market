@@ -32,14 +32,16 @@
                     {{ $message }}
                 @enderror
                 <input type="file" id="img" name="img">
-                <button class="content__form--img__btn" type="button">
-                    <label for="img">
-                        画像を選択する
-                    </label>
-                </button>
-                <p id="any">
-                    任意
-                </p>
+                <div id="wrapper__btn">
+                    <button class="content__form--img__btn" type="button">
+                        <label for="img">
+                            画像を選択する
+                        </label>
+                    </button>
+                    <p id="any">
+                        任意
+                    </p>
+                </div>
             </div>
             <div class="content__form--item">
                 <h3 class="content__form--item__ttl">

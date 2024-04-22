@@ -4,6 +4,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-width: 320px;
 }
 
 .header__ttl {
@@ -91,6 +92,10 @@ nav {
     cursor: pointer;
 }
 
+main {
+    min-width: 320px;
+}
+
 @media screen and (max-width:1024px) {
     .header__ttl {
         padding-left: 20px;
@@ -106,7 +111,6 @@ nav {
         width: fit-content;
         flex-wrap: wrap;
         height: 150px;
-        width: 768px;
     }
 
     .header__ttl {
@@ -116,10 +120,24 @@ nav {
     }
 
     #search {
+        width: 95%;
+        margin: 0 auto;
         margin-left: 20px;
     }
 
-    main {
-        width: 768px;
+    nav {
+        padding: 0;
+        margin: 0 20px 0 auto;
+    }
+
+    .header__item--link__box{
+        margin: 0;
+        width: 250px;
+    }
+
+    .header__item--link__btn{
+        background-color: transparent;
+        color: #fff;
+        width: auto;
     }
 }

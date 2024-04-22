@@ -88,11 +88,9 @@
                             @else
                                 <div class="comment__img">
                                     @if (app()->isLocal())
-                                        <img id="img"
-                                            src="{{ Storage::disk('public')->url('/profiles/' . $comment->user->profile->img) }}">
+                                        <img src="{{ Storage::disk('public')->url('/profiles/' . $comment->user->profile->img) }}">
                                     @elseif(app()->isProduction())
-                                        <img id="img"
-                                            src="{{ Storage::disk('s3')->url('/profiles/' . $comment->user->profile->img) }}">
+                                        <img id="img" src="{{ Storage::disk('s3')->url('/profiles/' . $comment->user->profile->img) }}">
                                     @endif
                                 </div>
                                 <p>

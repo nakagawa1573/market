@@ -36,7 +36,6 @@
 }
 
 #name {
-    width: 500px;
     font-size: 25px;
 }
 
@@ -110,10 +109,6 @@
 }
 
 @media screen and (max-width:1024px) {
-    #name {
-        width: 400px;
-    }
-
     .content__item--box {
         width: 400px;
     }
@@ -132,12 +127,25 @@
         margin-bottom: 50px;
     }
 
-    .content__box {
-        width: 580px;
+    .content__item {
+        width: 100%;
+        max-width: 580px;
     }
 
+    .content__img--box {
+        flex-flow: column-reverse;
+        width: 95%;
+    }
+
+    .content__box,
     .content__item--box {
-        width: 580px;
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .content__item--form {
+        width: 95%;
+        margin: 50px auto 0;
     }
 
 }
