@@ -244,6 +244,14 @@ AWS
 </tr>
 <tr>
 <td>
+CI/CD
+</td>
+<td>
+Circle CI
+</td>
+</tr>     
+<tr>
+<td>
 その他
 </td>
 <td>
@@ -262,8 +270,8 @@ Git , GitHub
 
 ## 環境構築
 ### Dockerビルド
-1. git clone git@github.com:nakagawa1573/market.git
-2. docker-compose up -d --build
+1.         git clone git@github.com:nakagawa1573/market.git
+2.         docker-compose up -d --build
 
 ＊MySQLは、OSによって起動しない場合があるのでそれぞれのPCに合わせて docker-compose.ymlファイルを編集してください。
 
@@ -297,8 +305,7 @@ Git , GitHub
 5. もしマイグレーションとシーディングがされていなければ、自分で実行してください
 
 
-           php artisan migrate
-           php artisan db:seed
+           php artisan migrate --seed
 8.         php artisan storage:link
 
 ## 本番環境
